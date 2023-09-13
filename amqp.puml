@@ -1,0 +1,18 @@
+```plantuml
+@startuml
+storage ActiveMQ {
+usecase Endpoint[
+Endpoint
+]
+}
+
+storage Interlok {
+usecase JMX [
+JMX
+]
+}
+
+Client --> "AMQP" Endpoint
+Endpoint --> "AMQP" JMX
+@enduml
+```

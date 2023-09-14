@@ -1,5 +1,8 @@
 # JMX proxy via ActiveMQ (AMQP) Testing
 
+[![license](https://img.shields.io/github/license/interlok-testing/testing_amqp_jmx.svg)](https://github.com/interlok-testing/testing_amqp_jmx/blob/develop/LICENSE)
+[![Actions Status](https://github.com/interlok-testing/testing_amqp_jmx/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/interlok-testing/testing_amqp_jmx/actions/workflows/gradle-build.yml)
+
 Project tests interlok-jmx-amqp features
 
 ## What it does

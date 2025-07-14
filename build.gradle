@@ -1,26 +1,32 @@
 plugins {
   // https://github.com/nemerosa/versioning
-  id 'net.nemerosa.versioning' version '2.14.0'
+  id 'net.nemerosa.versioning' version '3.1.0'
 }
 
 ext {
-  interlokParentGradle = "https://raw.githubusercontent.com/adaptris/interlok-build-parent/main/v5/build.gradle"
-  interlokVersion = '5.0-SNAPSHOT'
-
+  testingCommonGradle = "https://raw.githubusercontent.com/interlok-testing/testing_common/refs/heads/master/common.gradle?timestamp=${new Date().getTime()}"
+//  testingCommonGradle = "../testing_common/common.gradle"
+  interlokTestingVersion = "0.1"
   includeWar='true'
 }
 
 allprojects {
-  apply from: "${interlokParentGradle}"
+  apply from: "${testingCommonGradle}"
   // specify the version of the configuration.
   version=versioning.info.full
 }
 
 
+tasks.named("functionalTest") {
+  jvmArgs("--add-opens", "java.management/javax.management=ALL-UNNAMED")
+}
+
 dependencies {
   interlokRuntime ("com.adaptris:interlok-activemq:$interlokVersion") { changing=true }
-  interlokRuntime ("com.adaptris:interlok-jmx-amqp:$interlokVersion") { changing=true }
 
   interlokJavadocs group: "com.adaptris", name: "interlok-activemq", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
   interlokJavadocs group: "com.adaptris", name: "interlok-jmx-amqp", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
+  testImplementation group: "com.adaptris", name: "interlok-testing-common", version: "$interlokTestingVersion"
+  testImplementation ("com.adaptris:interlok-jmx-amqp:$interlokVersion") { changing=true }
+  testImplementation ("com.adaptris:interlok-jmx-jms-common:$interlokVersion") { changing=true }
 }

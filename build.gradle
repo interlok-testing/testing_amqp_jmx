@@ -6,7 +6,6 @@ plugins {
 ext {
   testingCommonGradle = "https://raw.githubusercontent.com/interlok-testing/testing_common/refs/heads/master/common.gradle?timestamp=${new Date().getTime()}"
 //  testingCommonGradle = "../testing_common/common.gradle"
-  interlokTestingVersion = "0.1"
   includeWar='true'
 }
 
@@ -26,7 +25,6 @@ dependencies {
 
   interlokJavadocs group: "com.adaptris", name: "interlok-activemq", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
   interlokJavadocs group: "com.adaptris", name: "interlok-jmx-amqp", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
-  testImplementation group: "com.adaptris", name: "interlok-testing-common", version: "$interlokTestingVersion"
   testImplementation ("com.adaptris:interlok-jmx-amqp:$interlokVersion") { changing=true }
   testImplementation ("com.adaptris:interlok-jmx-jms-common:$interlokVersion") { changing=true }
 }
